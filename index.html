@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>BadgeText Plugin Test</title>
+        <script src="http://cdn.sencha.com/ext/gpl/4.2.1/ext-all.js"></script>
+        <link href="http://cdn.sencha.com/ext/gpl/4.2.1/packages/ext-theme-gray/build/resources/ext-theme-gray-all.css" rel="stylesheet">
+        <script src="BadgeText.js"></script>
+        <script>
+        Ext.application({
+    name : 'Fiddle',
+
+    launch : function() {
+        
+        Ext.create('Ext.Window',{
+            title:'Badge Text Tests',
+            bodyBadding: 10,
+			width:700,
+			height:100,
+			autoShow:true,
+            defaults:{
+                margin:10
+            },
+            items:[
+                {
+                    xtype:'button',
+                    text:'Default Configs',
+                    action:'badgetext',
+                    plugins:[
+                        {
+                            ptype:'badgetext',
+                            defaultText: 0
+                        }
+                    ],
+                },
+                {
+                    xtype:'button',
+                    text:'Disable Opacity',
+                    action:'badgetext',
+                    plugins:[
+                        {
+                            ptype:'badgetext',
+                            defaultText: 0,
+                            disableOpacity:.5
+                        }
+                    ],
+                },
+                {
+                    xtype:'button',
+                    text:'Enable Background',
+                    action:'badgetext',
+                    plugins:[
+                        {
+                            ptype:'badgetext',
+                            defaultText: 0,
+                            disableOpacity:1,
+                            enableBg: 'orange'
+                        }
+                    ],
+                },
+                {
+                    xtype:'button',
+                    text:'Disable Background',
+                    action:'badgetext',
+                    plugins:[
+                        {
+                            ptype:'badgetext',
+                            defaultText: 0,
+                            disableOpacity:1,
+                            disableBg: 'green'
+                        }
+                    ],
+                },
+                {
+                    xtype:'button',
+                    text:'Align Right',
+                    action:'badgetext',
+                    plugins:[
+                        {
+                            ptype:'badgetext',
+                            defaultText: 0,
+                            disableOpacity:1,
+                            disableBg: 'red',
+                            align:'right'
+                        }
+                    ],
+                },
+                {
+                    xtype:'button',
+                    text:'Event Test',
+                    action:'badgetext',
+                    plugins:[
+                        {
+                            ptype:'badgetext',
+                            defaultText: 0,
+                            disableOpacity:1,
+                            align:'right',
+                            
+                        }
+                    ],
+                    listeners:{
+                        badgeclick:function(btn, text){
+                            console.log(btn);
+                            alert('Badge Clicked - Badge Text = ' + btn.getBadgeText());
+                            
+                        }
+                    }
+                }
+            ],
+            buttons:[
+                {
+                    text:'Test',
+                    handler:function(){
+                        
+                        var buttons = Ext.ComponentQuery.query('button[action=badgetext]');
+                        
+                        Ext.each(buttons, function(button){
+                            button.setBadgeText(button.getBadgeText() + 1);
+                        });
+                        
+                        
+                    }
+                },
+                {
+                    text:'Reset',
+                    handler:function(){
+                        
+                        var buttons = Ext.ComponentQuery.query('button[action=badgetext]');
+                        
+                        Ext.each(buttons, function(button){
+                            button.setBadgeText(0);
+                        });
+                        
+                        
+                    }
+                },
+                '->'
+            ],
+            renderTo: Ext.getBody()
+        })
+        
+
+    }
+});
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
